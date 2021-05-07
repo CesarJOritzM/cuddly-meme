@@ -1,0 +1,34 @@
+{
+  "name": "back-end",
+  "version": "0.0.0",
+  "description": "This is a back-end created with MongoDB, Node and Express",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && node ./dist/Server.js",
+    "dev": "nodemon --exec babel-node src/Server.js",
+    "build": "npm run clean && npm run build-babel",
+    "clean": "rm -rf dist && mkdir dist",
+    "build-babel": "babel -d ./dist src/ -s"
+  },
+  "repository": "git@github.com:Atacha/API-Express.git",
+  "author": "CesarJOritzM <cesarjavierortizmontero@gmail.com>,Marlon Ramirez, Camilo Santana",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.0",
+    "apollo-server-express": "^2.23.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "mongoose": "^5.12.7"
+  },
+  "devDependencies": {
+    "@babel/node": "^7.13.13",
+    "@babel/plugin-transform-runtime": "^7.13.15",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.14.0",
+    "@babel/runtime": "^7.14.0",
+    "nodemon": "^2.0.7"
+  }
+}
