@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { ALL_USERS } from './ListOfPersons';
+import useForm from '../hooks/useForm';
+import '../styles/components/createUser.scss';
 
 const CREATE_USER = gql`
   mutation CREATE_USER(
@@ -31,7 +33,7 @@ const CREATE_USER = gql`
 `;
 
 const CreateUser = () => {
-  const [inputs, setInputs] = useState({
+  const { inputs, handleChange, resetForm } = useForm({
     name: '',
     lastName: '',
     date: '',
@@ -40,39 +42,10 @@ const CreateUser = () => {
     colombian: false,
   });
 
-  const [CreateUser, { data, loading, error }] = useMutation(CREATE_USER, {
+  const [CreateUser, { loading, error }] = useMutation(CREATE_USER, {
     variables: inputs,
     refetchQueries: [{ query: ALL_USERS }],
   });
-
-  const handleChange = (e) => {
-    let { value, name, type } = e.target;
-    if (type === 'number') {
-      value = parseFloat(value);
-    }
-    if (name === 'colombian') {
-      if (value == 'si') {
-        value = true;
-      } else {
-        value = false;
-      }
-    }
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
-
-  const resetForm = () => {
-    setInputs({
-      name: '',
-      lastName: '',
-      date: '',
-      gender: '',
-      height: '',
-      colombian: false,
-    });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,56 +58,59 @@ const CreateUser = () => {
   }
 
   return (
-    <form method='POST' onSubmit={handleSubmit} disabled={loading}>
-      <input
-        type='text'
-        name='name'
-        placeholder='Nombre'
-        value={inputs.name}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type='text'
-        name='lastName'
-        placeholder='Apellido'
-        value={inputs.lastName}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type='date'
-        name='date'
-        value={inputs.date}
-        onChange={handleChange}
-        required
-      />
-      <label>
-        Genero
-        <select onChange={handleChange} name='gender'>
-          <option>Selecionar</option>
-          <option value='Male'>Hombre</option>
-          <option value='Female'>Mujer</option>
-        </select>
-      </label>
-      <input
-        type='number'
-        name='height'
-        placeholder='Estatura'
-        value={inputs.height}
-        onChange={handleChange}
-        required
-      />
-      <label>
-        ¿Colombiano?
-        <select onChange={handleChange} name='colombian'>
-          <option>Selecionar</option>
-          <option value='si'>Si</option>
-          <option value='no'>No</option>
-        </select>
-      </label>
-      <button type='submit'>Guardar</button>
-    </form>
+    <div>
+      <form method='POST' onSubmit={handleSubmit} disabled={loading}>
+        <input
+          type='text'
+          name='name'
+          placeholder='Nombre'
+          value={inputs.name}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type='text'
+          name='lastName'
+          placeholder='Apellido'
+          value={inputs.lastName}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type='date'
+          name='date'
+          value={inputs.date}
+          onChange={handleChange}
+          required
+        />
+        <label>
+          Genero
+          <br />
+          <select onChange={handleChange} name='gender'>
+            <option>Selecionar</option>
+            <option value='Male'>Hombre</option>
+            <option value='Female'>Mujer</option>
+          </select>
+        </label>
+        <input
+          type='number'
+          name='height'
+          placeholder='Estatura en Metros'
+          value={inputs.height}
+          onChange={handleChange}
+          required
+        />
+        <label>
+          ¿Colombiano?
+          <select onChange={handleChange} name='colombian'>
+            <option>Selecionar</option>
+            <option value='si'>Si</option>
+            <option value='no'>No</option>
+          </select>
+        </label>
+        <button type='submit'>Guardar</button>
+      </form>
+    </div>
   );
 };
 export default CreateUser;

@@ -1,0 +1,21 @@
+html {
+  font-size: 16px;
+  //variables
+  --primary: #438e27;
+  --light: #ffffff;
+  --dark: #000000;
+  --warning: #c13630;
+  --gray: #999;
+
+  body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    .main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 15%;
+    }
+  }
+}

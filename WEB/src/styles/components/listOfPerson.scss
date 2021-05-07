@@ -1,0 +1,17 @@
+table {
+  text-align: center;
+  box-shadow: 2px 2px 10px var(--gray);
+  border-collapse: collapse;
+  margin: 5px;
+  padding: 5px;
+  tr td {
+    border: 1px solid var(--gray);
+    margin: 5px;
+    padding: 5px;
+  }
+  th {
+    border: 1px solid var(--gray);
+    margin: 5px;
+    padding: 5px;
+  }
+}

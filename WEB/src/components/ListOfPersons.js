@@ -1,6 +1,7 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import Users from './Users';
+import '../styles/components/listOfPerson.scss';
 
 export const ALL_USERS = gql`
   query ALL_USERS {
@@ -29,8 +30,9 @@ const ListOfPersons = () => {
             <th>Apellido</th>
             <th>Edad</th>
             <th>Sexo</th>
-            <th>Estatura</th>
+            <th>Estatura (M)</th>
             <th>Colombiano</th>
+            <th> </th>
           </tr>
         </thead>
         <tbody>
