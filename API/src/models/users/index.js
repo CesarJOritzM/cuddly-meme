@@ -21,17 +21,12 @@ const dateScalar = new GraphQLScalarType({
 const typeDefs = gql`
   scalar Date
 
-  enum Gender {
-    Male
-    Female
-    Undefined
-  }
   type User {
     _id: ID!
     name: String
     lastName: String
     date: Date
-    gender: Gender
+    gender: String
     height: Float
     colombian: Boolean
   }
@@ -46,7 +41,7 @@ const typeDefs = gql`
       name: String!
       lastName: String!
       date: Date!
-      gender: Gender!
+      gender: String!
       height: Float!
       colombian: Boolean
     ): User
