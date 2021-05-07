@@ -27,7 +27,7 @@ const typeDefs = gql`
     Undefined
   }
   type User {
-    _id: ID
+    _id: ID!
     name: String
     lastName: String
     date: Date
@@ -38,16 +38,16 @@ const typeDefs = gql`
 
   type Query {
     AllUsers: [User]!
-    User(_id: ID!): User
+    User(_id: ID!): User!
   }
 
   type Mutation {
     CreateUser(
-      name: String
-      lastName: String
-      date: Date
-      gender: Gender
-      height: Float
+      name: String!
+      lastName: String!
+      date: Date!
+      gender: Gender!
+      height: Float!
       colombian: Boolean
     ): User
     DeleteUser(_id: ID!): User
